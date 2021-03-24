@@ -2,13 +2,25 @@
 <head>
     <meta charset="UTF-8">
     <script language="JavaScript">
-        var req = new XMLHttpRequest();
-        req.open('GET', document.location, false);
-        req.send(null);
-        var headers = req.getAllResponseHeaders().toLowerCase();
-
-        var $header = document.getElementById("header");
-        $header.innerHTML = headers; 
+        function parseHttpHeaders(httpHeaders) {
+            return httpHeaders
+                .split("\n")
+                .map(x => x.split(/: */, 2))
+                .filter(x => x[0])
+                .reduce((ac, x) => {
+                    ac[x[0]] = x[1];
+                    return ac;
+                }, {});
+        }
+        
+        function getHeader() {
+            var req = new XMLHttpRequest();
+            req.open('GET', document.location, false);
+            req.send(null);
+            var headers = parseHttpHeaders(req.getAllResponseHeaders());
+            var $inHtml = document.getElementById("inHtml");
+            $inHtml.innerHTML = "<PRE>" + headers + "</PRE>;      
+        }
         
         function sendMessageAndroid(){
             window.Android.showToast('안녕하세요. Android 호출입니다.');
@@ -24,10 +36,13 @@
         function showMessageOnLoad() {
             alert('페이지가 로딩되었습니다.');
         }
+        
+        getHeader();
+        
     </script>
 </head>    
 <body onLoad="javascript:onLoad();">
-    <p><span id="header"></span></p>
+    <p><span id="inHtml"></span></p>
     <p><a href="javascript:alert('안녕하세요');">1. Java script Alert</a></p>
     <p><a href="javascript:confirm('안녕하세요?');">2. Java script Confirm</a></p>
     <p><a href="myapp://host?message=안녕하세요">3. URL Scheme 방식</a> ( myapp://host?message=${message} )</p>
