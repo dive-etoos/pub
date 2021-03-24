@@ -2,15 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <script language="JavaScript">
-        function onLoad() {
-            var req = new XMLHttpRequest();
-            req.open('GET', document.location, false);
-            req.send(null);
-            var headers = req.getAllResponseHeaders().toLowerCase();
-            
-            var $header = document.getElementById("header");
-            $header.innerHTML = headers; 
-        }
+        var req = new XMLHttpRequest();
+        req.open('GET', document.location, false);
+        req.send(null);
+        var headers = req.getAllResponseHeaders().toLowerCase();
+
+        var $header = document.getElementById("header");
+        $header.innerHTML = headers; 
         
         function sendMessageAndroid(){
             window.Android.showToast('안녕하세요. Android 호출입니다.');
