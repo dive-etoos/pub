@@ -2,20 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <script language="JavaScript">
-        function sendMessageAndroid(){
-            window.Android.showToast('안녕하세요. Android 호출입니다.');
-        }
 
-        function sendMessageIOS(){
-            var message = {
-                'message': '안녕하세요. iOS 호출입니다.'
-            };
-            window.webkit.messageHandlers.iOSHandler.postMessage(message);
-        }
-
-        function showMessageOnLoad() {
-            alert('페이지가 로딩되었습니다.');
-        }        
     </script>
 </head>    
 <body>
@@ -30,7 +17,7 @@
         $test2.innerHTML = "<PRE>" + headers + "</PRE>";        
     </script>
 
-    <p><a href="">다운로드</a></p>
+    <p><a href="sample.zip">다운로드</a></p>
     <p>
         <form action="" method="POST">
             <input type="file">
