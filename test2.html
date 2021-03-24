@@ -13,14 +13,12 @@
                 }, {});
         }
         
-        function getHeader() {
-            var req = new XMLHttpRequest();
-            req.open('GET', document.location, false);
-            req.send(null);
-            var headers = parseHttpHeaders(req.getAllResponseHeaders());
-            var $inHtml = document.getElementById("inHtml");
-            $inHtml.innerHTML = "<PRE>" + headers + "</PRE>;      
-        }
+        var req = new XMLHttpRequest();
+        req.open('GET', document.location, false);
+        req.send(null);
+        var headers = parseHttpHeaders(req.getAllResponseHeaders());
+        var $inHtml = document.getElementById("inHtml");
+        $inHtml.innerHTML = "<PRE>" + headers + "</PRE>;      
         
         function sendMessageAndroid(){
             window.Android.showToast('안녕하세요. Android 호출입니다.');
@@ -35,10 +33,7 @@
 
         function showMessageOnLoad() {
             alert('페이지가 로딩되었습니다.');
-        }
-        
-        getHeader();
-        
+        }        
     </script>
 </head>    
 <body onLoad="javascript:onLoad();">
